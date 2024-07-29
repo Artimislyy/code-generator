@@ -1,11 +1,13 @@
 package com.lyy.generator;
 
 
+import com.lyy.Main;
 import com.lyy.model.MainTemplateConfig;
 import freemarker.template.TemplateException;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLOutput;
 
 /**
  * 核心生成器
@@ -18,16 +20,23 @@ public class MainGenerator {
      * @param model 数据模型
      * @throws TemplateException
      * @throws IOException
+     *
      */
+
     public static void doGenerate(Object model) throws TemplateException, IOException {
-        // 整个项目的根路径
-        String projectPath = System.getProperty("user.dir");
+
+
+        String filePath = Main.class.getResource("").getPath();
+        String normalizedFilePath = filePath.replace("\\", "/").replace("file:/", "");
+        String projectPath = normalizedFilePath.substring(0, normalizedFilePath.indexOf("code-generator-basic"));
+
         // 输入路径
-        String inputPath = new File(projectPath, "code-generator-demo-projects/acm-template").getAbsolutePath();
+        String inputPath = new File(projectPath, "code-generator-demo-projects/acm-template").getAbsolutePath().replace("\\", "/");
         String outputPath = projectPath;
 
+
         // 生成静态文件
-        StaticGenerator.copyFilesByRecursive(inputPath, outputPath);
+        StaticGenerator.copyFilesByHutool(inputPath, outputPath);
         // 生成动态文件
 
         String inputDynamicFilePath = projectPath + File.separator +"code-generator-basic"+File.separator+ "src/main/resources/templates/MainTemplate.java.ftl";
