@@ -1,7 +1,7 @@
-package com.lyy.cli.command;
+package ${basePackage}.cli.command;
 
 import cn.hutool.core.util.ReflectUtil;
-import com.lyy.model.DataModel;
+import ${basePackage}.model.DataModel;
 import picocli.CommandLine.Command;
 import java.lang.reflect.Field;
 
@@ -14,11 +14,6 @@ public class ConfigCommand implements Runnable {
     public void run() {
         // 实现 config 命令的逻辑
         System.out.println("查看参数信息");
-
-//        // 获取要打印属性信息的类
-//        Class<?> myClass = MainTemplateConfig.class;
-//        // 获取类的所有字段
-//        Field[] fields = myClass.getDeclaredFields();
 
         Field[] fields = ReflectUtil.getFields(DataModel.class);
 

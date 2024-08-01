@@ -1,9 +1,10 @@
-package com.lyy.cli;
+package com.lyy.maker.cli;
 
 
-import com.lyy.cli.command.ConfigCommand;
-import com.lyy.cli.command.GenerateCommand;
-import com.lyy.cli.command.ListCommand;
+
+import com.lyy.maker.cli.command.GenerateCommand;
+import com.lyy.maker.cli.command.ConfigCommand;
+import com.lyy.maker.cli.command.ListCommand;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
@@ -15,7 +16,6 @@ public class CommandExecutor implements Runnable{
     }
     public Integer doExecute(String[] args) {
         CommandLine commandLine = new CommandLine(this);
-        //commandLine.execute(args);处理用户输入的命令，剩下的就交给picocli框架来解析命令并执行业务逻辑
         return commandLine.execute(args);
     }
 }

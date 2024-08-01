@@ -1,7 +1,6 @@
-package com.lyy.generator;
+package com.lyy.maker.generator;
 
-
-import com.lyy.model.DataModel;
+import com.lyy.maker.model.DataModel;
 import freemarker.template.TemplateException;
 
 import java.io.File;

@@ -1,0 +1,59 @@
+{
+  "name": "acm-template-pro-generator",
+  "description": "ACM 示例模板生成器",
+  "basePackage": "com.lyy",
+  "version": "1.0",
+  "author": "lyy",
+  "createTime": "2024-7-30",
+  "fileConfig": {
+    "inputRootPath": "D:/java_code/code-generator/code-generator-demo-projects/acm-template-pro",
+    "outputRootPath": "generated",
+    "type": "dir",
+    "files": [
+      {
+        "inputPath": "src/com/lyy/acm/MainTemplate.java.ftl",
+        "outputPath": "src/com/lyy/acm/MainTemplate.java",
+        "type": "file",
+        "generateType": "dynamic"
+      },
+      {
+
+        "inputPath": ".gitignore",
+        "outputPath": ".gitignore",
+        "type": "file",
+        "generateType": "static"
+      },
+      {
+        "inputPath": "README.md",
+        "outputPath": "README.md",
+        "type": "file",
+        "generateType": "static"
+      }
+    ]
+  },
+  "modelConfig": {
+    "models": [
+      {
+        "fieldName": "loop",
+        "type": "boolean",
+        "description": "是否生成循环(true/false)",
+        "defaultValue": false,
+        "abbr": "l"
+      },
+      {
+        "fieldName": "author",
+        "type": "String",
+        "description": "作者",
+        "defaultValue": "lyy",
+        "abbr": "a"
+      },
+      {
+        "fieldName": "outputText",
+        "type": "String",
+        "description": "输出文本",
+        "defaultValue": "sum = ",
+        "abbr": "o"
+      }
+    ]
+  }
+}
