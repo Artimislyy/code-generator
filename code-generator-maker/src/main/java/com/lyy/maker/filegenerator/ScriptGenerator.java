@@ -1,8 +1,7 @@
-package com.lyy.maker.generator;
+package com.lyy.maker.filegenerator;
 
 import cn.hutool.core.io.FileUtil;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;

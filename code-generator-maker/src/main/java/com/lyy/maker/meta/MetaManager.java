@@ -2,6 +2,8 @@ package com.lyy.maker.meta;
 import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.json.JSONUtil;
 
+import static com.lyy.maker.meta.MetaValidator.doValidAndFill;
+
 
 /**
  * 将meta.json 文件中的内容加载到Meta对象中
@@ -33,7 +35,8 @@ public class MetaManager {
         //将 JSON 字符串 metaJson 转换为 Meta 类型的对象。
         Meta newMeta = JSONUtil.toBean(metaJson, Meta.class);
         Meta.FileConfig fileConfig = newMeta.getFileConfig();
-        // todo 校验和处理默认值
+        //校验和处理默认值
+        doValidAndFill(newMeta);
         return newMeta;
     }
 }
