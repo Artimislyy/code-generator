@@ -15,8 +15,10 @@ public abstract class GenerateTemplate {
     public void doGenerate() throws TemplateException, IOException, InterruptedException{
         Meta meta = MetaManager.getMetaObject();//相当于命令行自己输入的参数 -l -o -a都是在这里解析的
 
+        String originalPath = GenerateTemplate.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+
         // 输出根路径
-        String projectPath = System.getProperty("user.dir") + File.separator + "code-generator-maker";//code-generator\code-generator-maker
+        String projectPath = new File(originalPath).getParentFile().getParentFile().getAbsolutePath(); //code-generator\code-generator-maker
         String outputPath = projectPath + File.separator + "generated" + File.separator + meta.getName();//code-generator\code-generator-maker\generated\acm-template-pro-generator
         if (!FileUtil.exist(outputPath)) {
             FileUtil.mkdir(outputPath);
@@ -85,6 +87,7 @@ public abstract class GenerateTemplate {
         outputFilePath = outputFilePath.replace("\\", "/");
         DynamicGenerator.doGenerate(inputFilePath , outputFilePath, meta);
 
+
         // cli.command.ConfigCommand
         inputFilePath = inputResourcePath  + "templates/java/cli/command/ConfigCommand.java.ftl";
         outputFilePath = outputBaseJavaPackagePath + "/cli/command/ConfigCommand.java";
@@ -109,6 +112,12 @@ public abstract class GenerateTemplate {
         outputFilePath = outputFilePath.replace("\\", "/");
         DynamicGenerator.doGenerate(inputFilePath , outputFilePath, meta);
 
+        // generator.MainGenerator
+        inputFilePath = inputResourcePath + "templates/java/generator/MainGenerator.java.ftl";
+        outputFilePath = outputBaseJavaPackagePath + "/generator/MainGenerator.java";
+        outputFilePath = outputFilePath.replace("\\", "/");
+        DynamicGenerator.doGenerate(inputFilePath , outputFilePath, meta);
+
         // Main
         inputFilePath = inputResourcePath + "templates/java/Main.java.ftl";
         outputFilePath = outputBaseJavaPackagePath + "/Main.java";
@@ -121,11 +130,7 @@ public abstract class GenerateTemplate {
         outputFilePath = outputFilePath.replace("\\", "/");
         DynamicGenerator.doGenerate(inputFilePath , outputFilePath, meta);
 
-        // generator.MainGenerator
-        inputFilePath = inputResourcePath + "templates/java/generator/MainGenerator.java.ftl";
-        outputFilePath = outputBaseJavaPackagePath + "/generator/MainGenerator.java";
-        outputFilePath = outputFilePath.replace("\\", "/");
-        DynamicGenerator.doGenerate(inputFilePath , outputFilePath, meta);
+
 
         // generator.StaticGenerator
         inputFilePath = inputResourcePath + "templates/java/generator/StaticGenerator.java.ftl";
