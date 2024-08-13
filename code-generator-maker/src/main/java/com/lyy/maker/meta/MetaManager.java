@@ -1,4 +1,5 @@
 package com.lyy.maker.meta;
+
 import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.json.JSONUtil;
 
@@ -30,11 +31,10 @@ public class MetaManager {
     }
 
     private static Meta initMeta() {
-        //读取名为 meta.json 的文件，并将其内容以 UTF-8 编码转换为字符串。
+        //读取Classpath下的资源为字符串，使用UTF-8编码
         String metaJson = ResourceUtil.readUtf8Str("meta.json");
         //将 JSON 字符串 metaJson 转换为 Meta 类型的对象。
         Meta newMeta = JSONUtil.toBean(metaJson, Meta.class);
-        Meta.FileConfig fileConfig = newMeta.getFileConfig();
         //校验和处理默认值
         doValidAndFill(newMeta);
         return newMeta;

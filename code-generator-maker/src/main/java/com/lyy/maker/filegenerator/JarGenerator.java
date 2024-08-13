@@ -1,7 +1,6 @@
 package com.lyy.maker.filegenerator;
 
 import java.io.*;
-import java.util.Map;
 
 public class JarGenerator {
     public static void doGenerate(String projectDir) throws IOException, InterruptedException {
@@ -16,7 +15,6 @@ public class JarGenerator {
         // ProcessBuilder用于构建和启动操作系统进程
         ProcessBuilder processBuilder = new ProcessBuilder(mavenCommand.split(" "));
         processBuilder.directory(new File(projectDir));
-        Map<String, String> environment = processBuilder.environment();
         Process process = processBuilder.start();
 
 //        // 读取命令的输出

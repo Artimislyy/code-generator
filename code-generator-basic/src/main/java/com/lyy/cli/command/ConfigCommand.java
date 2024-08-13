@@ -22,6 +22,7 @@ public class ConfigCommand implements Runnable {
 
         Field[] fields = ReflectUtil.getFields(DataModel.class);
 
+
         // 遍历并打印每个字段的信息
         for (Field field : fields) {
             System.out.println("字段类型：" + field.getType());

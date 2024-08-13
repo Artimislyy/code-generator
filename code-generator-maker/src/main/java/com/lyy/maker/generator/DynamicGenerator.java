@@ -17,9 +17,9 @@ public class DynamicGenerator {
     /**
      * 生成文件
      *
-     * @param inputPath 模板文件输入路径
+     * @param inputPath  模板文件输入路径
      * @param outputPath 输出路径
-     * @param model 数据模型
+     * @param model      数据模型
      * @throws IOException
      * @throws TemplateException
      */

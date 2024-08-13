@@ -54,10 +54,15 @@ public class DynamicGenerator {
         }
 
         // 生成
-//        Writer out = new FileWriter(outputPath);
-        Writer out = new OutputStreamWriter(new FileOutputStream(new File(outputPath)), "UTF-8");
 
-        //把model中的数据传给已经挖好坑的ftl模板
+        //Writer是一个抽象类，用于表示字符输出流。
+        //OutputStreamWriter是Writer的一个具体实现类，它将字符流转化为字节流,UTF-8字符编码。
+        //FileWriter是Writer的一个具体实现类，它将字符流写入到文件中,它使用系统默认的字符编码进行转换。
+//        Writer out = new FileWriter(outputPath);
+        Writer out = new OutputStreamWriter(new FileOutputStream(outputPath), "UTF-8");
+
+        //将数据模型填充到模板并将输出写入到指定 Writer 中
+        //模板中有 ${name} 占位符，那么 model 应该包含一个属性对应 "name": "某个值"。
         template.process(model, out);
 
         // 生成文件后别忘了关闭哦

@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
+import com.lyy.maker.meta.Meta.FileConfig.FileInfo;
 import com.lyy.maker.meta.enums.FileGenerateTypeEnum;
 import com.lyy.maker.meta.enums.FileTypeEnum;
 import com.lyy.maker.meta.enums.ModelTypeEnum;
@@ -86,11 +87,11 @@ public class MetaValidator {
         }
 
         // fileInfo 默认值
-        List<Meta.FileConfig.FileInfo> fileInfoList = fileConfig.getFiles();
+        List<FileInfo> fileInfoList = fileConfig.getFiles();
         if (!CollectionUtil.isNotEmpty(fileInfoList)) {
             return;
         }
-        for (Meta.FileConfig.FileInfo fileInfo : fileInfoList) {
+        for (FileInfo fileInfo : fileInfoList) {
             String type = fileInfo.getType();
             // 类型为 group，不校验
             if (FileTypeEnum.GROUP.getValue().equals(type)) {
