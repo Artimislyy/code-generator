@@ -19,6 +19,8 @@ public class TemplateMakerFileConfig {
 
         private String path;
 
+        private String condition;
+
         private List<FileFilterConfig> filterConfigList;//filters，一个文件有多个过滤规则
 
         @Data

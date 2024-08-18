@@ -19,13 +19,13 @@ public abstract class GenerateTemplate {
 
         // 输出根路径
         String projectPath = new File(originalPath).getParentFile().getParentFile().getAbsolutePath(); //code-generator\code-generator-maker
-        String outputPath = projectPath + File.separator + "generated" + File.separator + meta.getName();//code-generator\code-generator-maker\generated\acm-template-pro-generator
+        String outputPath = projectPath + File.separator + "generated" + File.separator + meta.getName();//generated\springboot-init-generator
         if (!FileUtil.exist(outputPath)) {
             FileUtil.mkdir(outputPath);
         }
 
         //1、复制原始模板文件
-        String sourceCopyDestPath = copySource(meta, outputPath);//code-generator\code-generator-maker\generated\acm-template-pro-generator\.source
+        String sourceCopyDestPath = copySource(meta, outputPath);//./temp/1/springboot-init --> generated/springboot-init-generator/.source/springboot-init
 
         //2、生成代码
         generateCode(meta, outputPath);
@@ -83,7 +83,7 @@ public abstract class GenerateTemplate {
 
         // model.DataModel
         inputFilePath = inputResourcePath + "templates/java/model/DataModel.java.ftl";//code-generator-maker\src\main\resources\templates\java\model\DataModel.java.ftl
-        outputFilePath = outputBaseJavaPackagePath + "/model/DataModel.java";//code-generator\code-generator-maker\generated\acm-template-pro-generator\src\main\java\com\lyy\model\DataModel.java
+        outputFilePath = outputBaseJavaPackagePath + "/model/DataModel.java";//generated\springboot-init-generator\src\main\java\com\lyy\model\DataModel.java
         outputFilePath = outputFilePath.replace("\\", "/");
         DynamicGenerator.doGenerate(inputFilePath, outputFilePath, meta);
 
@@ -151,9 +151,13 @@ public abstract class GenerateTemplate {
     }
 
     protected String copySource(Meta meta, String outputPath) {
+        // 获取源文件根路径
         String sourceRootPath = meta.getFileConfig().getSourceRootPath();
-        String sourceCopyDestPath = outputPath + File.separator + ".source";//code-generator\code-generator-maker\generated\acm-template-pro-generator\.source
+        // 获取源文件复制目标路径
+        String sourceCopyDestPath = outputPath + File.separator + ".source";//generated\springboot-init-generator\.source
+        // 复制源文件到目标路径
         FileUtil.copy(sourceRootPath, sourceCopyDestPath, false);
+        // 返回源文件复制目标路径
         return sourceCopyDestPath;
     }
 }

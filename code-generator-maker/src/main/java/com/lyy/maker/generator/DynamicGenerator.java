@@ -43,7 +43,7 @@ public class DynamicGenerator {
             FileUtil.touch(outputPath);
         }
         // 生成
-//        Writer out = new FileWriter(outputPath);
+        //Writer out = new FileWriter(outputPath);
         Writer out = new OutputStreamWriter(new FileOutputStream(outputPath), "UTF-8");
 
         //将模板 template 和数据模型 model 结合起来，并将结果输出到 out 中。

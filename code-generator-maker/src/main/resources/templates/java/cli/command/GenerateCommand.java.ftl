@@ -18,9 +18,10 @@ ${indent}private ${modelInfo.type} ${modelInfo.fieldName}<#if modelInfo.defaultV
 <#-- 生成命令调用 -->
 <#macro generateCommand indent modelInfo>
 ${indent}System.out.println("输入${modelInfo.groupName}配置：");
-${indent}CommandLine commandLine = new CommandLine(${modelInfo.type}Command.class);
-${indent}commandLine.execute(${modelInfo.allArgsStr});
+${indent}CommandLine ${modelInfo.groupKey}CommandLine = new CommandLine(${modelInfo.type}Command.class);
+${indent}${modelInfo.groupKey}CommandLine.execute(${modelInfo.allArgsStr});
 </#macro>
+
 
 <#macro argsList modelInfo>
 
@@ -60,6 +61,7 @@ public class GenerateCommand implements Callable<Integer> {
 
     <#-- 生成调用方法 -->
     public Integer call() throws Exception {
+
         <#list modelConfig.models as modelInfo>
         <#if modelInfo.groupKey??>
         <#if modelInfo.condition??>
@@ -67,7 +69,7 @@ public class GenerateCommand implements Callable<Integer> {
             <@generateCommand indent="            " modelInfo=modelInfo />
         }
         <#else>
-        <@generateCommand indent="      " modelInfo=modelInfo />
+        <@generateCommand indent="        " modelInfo=modelInfo />
         </#if>
         </#if>
         </#list>
