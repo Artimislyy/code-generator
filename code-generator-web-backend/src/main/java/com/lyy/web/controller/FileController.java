@@ -134,26 +134,17 @@ public class FileController {
      */
     @GetMapping("/download")
     public void downloadGeneratorById(long id, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // 判断id是否小于等于0
         if (id <= 0) {
-            // 抛出参数错误异常
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        // 获取当前登录用户
         User loginUser = userService.getLoginUser(request);
-        // 根据id获取生成器
         Generator generator = generatorService.getById(id);
-        // 判断生成器是否存在
         if (generator == null) {
-            // 抛出未找到异常
             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
         }
 
-        // 获取生成器的产物包路径
         String filepath = generator.getDistPath();
-        // 判断产物包路径是否为空
         if (StrUtil.isBlank(filepath)) {
-            // 抛出未找到异常
             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "产物包不存在");
         }
 
@@ -162,9 +153,7 @@ public class FileController {
 
         COSObjectInputStream cosObjectInput = null;
         try {
-            // 从cos中获取对象
             COSObject cosObject = cosManager.getObject(filepath);
-            // 获取对象内容
             cosObjectInput = cosObject.getObjectContent();
             // 处理下载到的流
             byte[] bytes = IOUtils.toByteArray(cosObjectInput);
@@ -175,12 +164,9 @@ public class FileController {
             response.getOutputStream().write(bytes);
             response.getOutputStream().flush();
         } catch (Exception e) {
-            // 记录错误日志
             log.error("file download error, filepath = " + filepath, e);
-            // 抛出系统错误异常
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "下载失败");
         } finally {
-            // 关闭输入流
             if (cosObjectInput != null) {
                 cosObjectInput.close();
             }

@@ -66,7 +66,7 @@ cos:
 springdoc:
   group-configs:
     - group: 'default'
-      packages-to-scan: com.yupi.web.controller
+      packages-to-scan: com.lyy.web.controller
 # knife4j的增强配置，不需要增强可以不配
 knife4j:
   enable: true
