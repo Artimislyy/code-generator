@@ -4,7 +4,8 @@ generated
 target
 code-generator.iml
 code-generator-basic.iml
-code-generator-web-backend/code-generator-web-backend.iml
+code-generator-web-backend.iml
+application-local.yml
 code-generator-maker/.temp
 
 ### Java template
